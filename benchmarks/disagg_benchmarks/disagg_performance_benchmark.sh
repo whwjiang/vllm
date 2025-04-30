@@ -3,7 +3,7 @@
 # Requirement: 2x GPUs.
 
 
-# Model: meta-llama/Meta-Llama-3.1-8B-Instruct
+# Model: silence09/DeepSeek-R1-Small-2layers
 # Query: 1024 input tokens, 6 output tokens, QPS 2/4/6/8, 100 requests
 # Resource: 2x GPU
 # Approaches:
@@ -34,7 +34,7 @@ wait_for_server() {
 
 
 launch_chunked_prefill() {
-  model="meta-llama/Meta-Llama-3.1-8B-Instruct"
+  model="silence09/DeepSeek-R1-Small-2layers"
   # disagg prefill
   CUDA_VISIBLE_DEVICES=0 python3 \
     -m vllm.entrypoints.openai.api_server \
@@ -87,7 +87,7 @@ launch_disagg_prefill() {
 
 benchmark() {
   results_folder="./results"
-  model="meta-llama/Meta-Llama-3.1-8B-Instruct"
+  model="silence09/DeepSeek-R1-Small-2layers"
   dataset_name="sonnet"
   dataset_path="../sonnet_4x.txt"
   num_prompts=100
