@@ -43,7 +43,7 @@ benchmark() {
   # compare chunked prefill with disaggregated prefill
 
   results_folder="./results"
-  model="meta-llama/Meta-Llama-3.1-8B-Instruct"
+  model="silence09/DeepSeek-R1-Small-2layers"
   dataset_name="sonnet"
   dataset_path="../sonnet_4x.txt"
   num_prompts=10
@@ -58,7 +58,7 @@ benchmark() {
     --model $model \
     --port 8100 \
     --max-model-len 10000 \
-    --gpu-memory-utilization 0.6 \
+    --gpu-memory-utilization 0.9 \
     --kv-transfer-config \
     '{"kv_connector":"PyNcclConnector","kv_role":"kv_producer","kv_rank":0,"kv_parallel_size":2,"kv_buffer_size":5e9}' &
     
@@ -68,7 +68,7 @@ benchmark() {
     --model $model \
     --port 8200 \
     --max-model-len 10000 \
-    --gpu-memory-utilization 0.6 \
+    --gpu-memory-utilization 0.9 \
     --kv-transfer-config \
     '{"kv_connector":"PyNcclConnector","kv_role":"kv_consumer","kv_rank":1,"kv_parallel_size":2,"kv_buffer_size":5e9}' &
 
@@ -119,7 +119,7 @@ main() {
   (which jq) || (apt-get -y install jq)
   (which socat) || (apt-get -y install socat)
 
-  pip install quart httpx datasets
+  uv pip install quart httpx datasets
 
   cd "$(dirname "$0")"
 

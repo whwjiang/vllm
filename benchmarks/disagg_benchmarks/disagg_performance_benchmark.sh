@@ -58,7 +58,7 @@ launch_chunked_prefill() {
 
 
 launch_disagg_prefill() {
-  model="meta-llama/Meta-Llama-3.1-8B-Instruct" 
+  model="silence09/DeepSeek-R1-Small-2layers" 
   # disagg prefill
   CUDA_VISIBLE_DEVICES=0 python3 \
     -m vllm.entrypoints.openai.api_server \
@@ -123,7 +123,7 @@ main() {
   (which socat) || (apt-get -y install socat)
   (which lsof) || (apt-get -y install lsof)
 
-  pip install quart httpx matplotlib aiohttp datasets
+  uv pip install quart httpx matplotlib aiohttp datasets
 
   cd "$(dirname "$0")"
 
